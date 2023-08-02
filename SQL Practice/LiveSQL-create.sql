@@ -59,5 +59,44 @@ begin
 end;
 /
 
+insert into departments (name,location) values
+    ('Finance','New York');
+    
+insert into departments (name, location) values
+    ('Development','San Jose');
+    
+select*from departments; --insert한 name,location 말고도 트리거로인해 deptno가 생성됨
+
+
+insert into EMPLOYEES
+        (name, job,salary,deptno)
+        values
+        ('Sam Smith','Programmer',
+        5000,
+        (select deptno
+        from departments
+        where name = 'Development'));
+        
+insert into EMPLOYEES
+        (name,job,salary,deptno)
+        values
+        ('Mara Martin','Analyst',
+        6000,
+        (select deptno
+        from departments
+        where name ='Finance'));
+        
+insert into EMPLOYEES
+        (name,job,salary,deptno)
+        values
+        ('Yun Yates','Analyst',
+        5500,
+        (select deptno
+        from departments
+        where name = 'Development'));
+        
+select*from EMPLOYEES;
+    
+
 
 
